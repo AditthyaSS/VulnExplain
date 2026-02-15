@@ -241,12 +241,12 @@ def calculate_security_score(vulnerabilities: List[Vulnerability]) -> int:
 # Gemini Analysis Function
 async def analyze_with_gemini(code_content: str, context: str = "code snippet") -> List[Vulnerability]:
     """
-    Analyze code using Gemini Pro 3 for security vulnerabilities
+    Analyze code using Groq API with Llama 3.3-70b-versatile for security vulnerabilities
     """
-    api_key = os.environ.get('EMERGENT_LLM_KEY')
+    api_key = os.environ.get('GROQ_API_KEY')
     
     if not api_key:
-        raise HTTPException(status_code=500, detail="Emergent LLM key not configured")
+        raise HTTPException(status_code=500, detail="Groq API key not configured")
     
     # STEP 1: Updated system prompt - Gemini should NOT assign severity
     system_message = """Act as a Senior Security Engineer. Audit the code/repo for security vulnerabilities.
@@ -286,15 +286,17 @@ If no vulnerabilities found, return [].
 IMPORTANT: Do NOT include "severity" or "fix_time_hours" fields. These will be assigned by the backend based on CWE mapping."""
     
     try:
-        # PART 1: Configure Gemini for deterministic output
+        # Configure Groq for deterministic output
+        # Use llama-3.3-70b-versatile for best free tier performance
+        groq_model = os.environ.get('GROQ_MODEL', 'llama-3.3-70b-versatile')
         chat = LlmChat(
             api_key=api_key,
             session_id=f"audit-{uuid.uuid4()}",
             system_message=system_message
-        ).with_model("gemini", "gemini-2.5-pro").with_params(
+        ).with_model("groq", groq_model).with_params(
             temperature=0,
-            top_p=0,
-            top_k=1
+            top_p=0.1,
+            max_tokens=8192
         )
         
         user_message = UserMessage(
@@ -433,14 +435,20 @@ async def audit_repo(
             # Fetch repository contents using GitHub API
             import requests
             
+            # Setup authentication headers if GitHub token is available
+            headers = {}
+            github_token = os.environ.get('GITHUB_TOKEN')
+            if github_token:
+                headers['Authorization'] = f'token {github_token}'
+            
             # Get repository tree (all files)
             api_url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/main?recursive=1"
             
             # Try main branch, fallback to master
-            response = requests.get(api_url, timeout=10)
+            response = requests.get(api_url, headers=headers, timeout=10)
             if response.status_code == 404:
                 api_url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/master?recursive=1"
-                response = requests.get(api_url, timeout=10)
+                response = requests.get(api_url, headers=headers, timeout=10)
             
             if response.status_code != 200:
                 raise HTTPException(status_code=400, detail=f"Failed to fetch repository. Status: {response.status_code}. Make sure the repository is public.")
@@ -461,7 +469,7 @@ async def audit_repo(
             file_contents = []
             for file_item in code_files:
                 file_url = f"https://api.github.com/repos/{owner}/{repo}/contents/{file_item['path']}"
-                file_response = requests.get(file_url, timeout=10)
+                file_response = requests.get(file_url, headers=headers, timeout=10)
                 
                 if file_response.status_code == 200:
                     file_data = file_response.json()

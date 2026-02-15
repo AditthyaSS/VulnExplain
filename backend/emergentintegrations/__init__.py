@@ -1,10 +1,12 @@
 """
-Minimal wrapper for emergentintegrations.llm.chat module
-This provides compatibility with the emergent LLM chat interface
+Minimal wrapper for LLM chat - now using Groq API
+Supports Llama 3.3-70b-versatile and other Groq models
 """
 
 from typing import Optional
-import google.generativeai as genai
+import os
+import httpx
+import json
 
 
 class UserMessage:
@@ -15,52 +17,71 @@ class UserMessage:
 
 
 class LlmChat:
-    """LLM Chat wrapper for Gemini"""
+    """LLM Chat wrapper for Groq API"""
     
     def __init__(self, api_key: str, session_id: str, system_message: str = ""):
         self.api_key = api_key
         self.session_id = session_id
         self.system_message = system_message
-        self.model_name = "gemini-2.0-flash-exp"
+        self.model_name = "llama-3.3-70b-versatile"
         self.temperature = 1.0
         self.top_p = 0.95
-        self.top_k = 40
+        self.max_tokens = 8192
         
     def with_model(self, provider: str, model: str):
         """Set the model"""
         self.model_name = model
         return self
     
-    def with_params(self, temperature: float = None, top_p: float = None, top_k: int = None):
+    def with_params(self, temperature: float = None, top_p: float = None, top_k: int = None, max_tokens: int = None):
         """Set generation parameters"""
         if temperature is not None:
             self.temperature = temperature
         if top_p is not None:
             self.top_p = top_p
-        if top_k is not None:
-            self.top_k = top_k
+        if max_tokens is not None:
+            self.max_tokens = max_tokens
+        # Note: top_k is not used by Groq
         return self
     
     async def send_message(self, message: UserMessage) -> str:
-        """Send a message and get a response"""
-        genai.configure(api_key=self.api_key)
+        """Send a message and get a response from Groq"""
         
-        # Create generation config
-        generation_config = {
-            "temperature": self.temperature,
-            "top_p": self.top_p,
-            "top_k": self.top_k,
-            "max_output_tokens": 8192,
+        # Build messages array
+        messages = []
+        if self.system_message:
+            messages.append({
+                "role": "system",
+                "content": self.system_message
+            })
+        
+        messages.append({
+            "role": "user",
+            "content": message.text
+        })
+        
+        # Groq API endpoint
+        url = "https://api.groq.com/openai/v1/chat/completions"
+        
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
         }
         
-        # Create the model
-        model = genai.GenerativeModel(
-            model_name=self.model_name,
-            generation_config=generation_config,
-            system_instruction=self.system_message
-        )
+        payload = {
+            "model": self.model_name,
+            "messages": messages,
+            "temperature": self.temperature,
+            "top_p": self.top_p,
+            "max_tokens": self.max_tokens,
+            "stream": False
+        }
         
-        # Send the message
-        response = model.generate_content(message.text)
-        
-        return response.text
+        # Make async request
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            response = await client.post(url, headers=headers, json=payload)
+            response.raise_for_status()
+            
+            result = response.json()
+            return result["choices"][0]["message"]["content"]
+

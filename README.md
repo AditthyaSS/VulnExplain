@@ -25,7 +25,7 @@
 <td width="50%">
 
 ### 🤖 AI-Powered Analysis
-- **Gemini AI Integration** for intelligent vulnerability detection
+- **Groq AI Integration** with Llama 3.3-70b-versatile for intelligent vulnerability detection
 - **CWE-Based Classification** with industry standards
 - **SOC 2 Compliance Mapping** for enterprise security
 - **Deduplication Engine** to eliminate false positives
@@ -71,7 +71,7 @@
 ```
 FastAPI (Python)     → High-performance async API
 MongoDB + Motor      → Async database with scalability
-Google Gemini AI     → Advanced vulnerability detection
+Groq AI (Llama 3.3)  → Ultra-fast vulnerability detection
 ReportLab            → Professional PDF reports
 JWT Authentication   → Secure API access
 ```
@@ -96,7 +96,7 @@ CRACO                → Custom CRA configuration
 ✓ Python 3.8+
 ✓ Node.js 16+
 ✓ MongoDB (local or cloud)
-✓ Gemini API Key
+✓ Groq API Key
 ```
 
 ### Backend Setup
@@ -148,7 +148,7 @@ npm start
 MONGO_URL="mongodb://localhost:27017"
 DB_NAME="vuln_database"
 CORS_ORIGINS="*"
-EMERGENT_LLM_KEY=your_gemini_api_key_here  # Get from https://aistudio.google.com/app/apikey
+GROQ_API_KEY=your_groq_api_key_here  # Get from https://console.groq.com/keys
 ```
 
 ### Frontend (`frontend/.env`)
@@ -289,7 +289,7 @@ This is a private project. For questions or issues, please contact the developme
 
 <div align="center">
 
-**Built with ❤️ using FastAPI, React, and Gemini AI**
+**Built with ❤️ using FastAPI, React, and Groq AI**
 
 [⬆ Back to Top](#-vulnexplain)
 

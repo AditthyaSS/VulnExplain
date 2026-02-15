@@ -15,10 +15,18 @@ __pycache__/
 dist/
 build/
 
-# Environment variables
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables (IMPORTANT - contains API keys!)
 .env
 .env.local
 .env.*.local
+backend/.env
+frontend/.env
 
 # IDE
 .vscode/
@@ -63,3 +71,7 @@ Thumbs.db
 
 # Package lock files (keep only one - yarn.lock in frontend)
 package-lock.json
+
+# Local development notes (optional - keep setup guides)
+# TROUBLESHOOTING.md
+# QUOTA_FIX.md
