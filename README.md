@@ -110,7 +110,7 @@ pip install -r requirements.txt
 
 # 3. Configure environment variables
 cp .env.example .env
-# Edit .env and add your Gemini API key
+# Edit .env and add your Groq API key
 
 # 4. Start the server
 python -m uvicorn server:app --reload --port 8000
@@ -282,7 +282,7 @@ This is a private project. For questions or issues, please contact the developme
 
 - **IBM Cost of Data Breach Report 2024** - Financial impact data
 - **DPDP Act 2023** - Compliance fine estimates
-- **Google Gemini AI** - Vulnerability detection engine
+- **Groq AI** - Ultra-fast LLM inference with Llama 3.3
 - **shadcn/ui** - Beautiful UI components
 
 ---
