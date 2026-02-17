@@ -65,6 +65,26 @@
 
 ---
 
+## 📸 Demo Screenshots
+
+<div align="center">
+
+### Application Interface
+
+![Dashboard Overview](assets/img1.png)
+
+![Vulnerability Analysis](assets/img2.png)
+
+![Security Metrics](assets/img3.png)
+
+![Financial Impact Report](assets/img4.png)
+
+![PDF Report Generation](assets/img5.png)
+
+</div>
+
+---
+
 ## 📋 Tech Stack
 
 ### Backend
