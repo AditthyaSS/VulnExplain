@@ -222,7 +222,7 @@ graph LR
 
 ---
 
-## 🎨 Features Highlights
+##  Features Highlights
 
 ### Security Analysis
 ✓ Deterministic severity scoring based on CWE mapping  
