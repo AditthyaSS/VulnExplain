@@ -44,7 +44,7 @@
 <tr>
 <td width="50%">
 
-### 📊 Advanced Analytics
+###  Advanced Analytics
 - **Security Score** (0-100 gauge)
 - **Severity Distribution** charts
 - **Financial Risk Breakdown** visualization
