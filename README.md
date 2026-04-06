@@ -33,7 +33,7 @@
 </td>
 <td width="50%">
 
-### 💰 Financial Impact Assessment
+###  Financial Impact Assessment
 - **Developer Remediation Costs** (₹2,500/hr avg)
 - **Downtime Loss Calculation** (₹50,000/hr avg)
 - **DPDP Act 2023 Compliance Fines**
