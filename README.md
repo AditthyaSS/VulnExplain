@@ -85,7 +85,7 @@
 
 ---
 
-## 📋 Tech Stack
+##  Tech Stack
 
 ### Backend
 ```
