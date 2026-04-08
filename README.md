@@ -203,7 +203,7 @@ curl -X POST "http://localhost:8000/api/audit" \
 
 ---
 
-## 💡 How It Works
+## How It Works
 
 ```mermaid
 graph LR
