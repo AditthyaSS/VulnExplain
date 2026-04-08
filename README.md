@@ -244,7 +244,7 @@ graph LR
 
 ---
 
-## 🚀 Production Deployment
+##  Production Deployment
 
 ### Backend
 
