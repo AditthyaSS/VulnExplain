@@ -53,7 +53,7 @@
 </td>
 <td width="50%">
 
-### 🔧 Multi-Input Support
+###  Multi-Input Support
 - **Code Snippet Analysis**
 - **File Upload** (up to 20 files)
 - **GitHub Repository Scanning**
