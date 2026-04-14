@@ -108,7 +108,7 @@ CRACO                → Custom CRA configuration
 
 ---
 
-## 🛠️ Installation & Setup
+##  Installation & Setup
 
 ### Prerequisites
 
