@@ -160,7 +160,7 @@ npm start
 
 ---
 
-## 🔑 Environment Variables
+##  Environment Variables
 
 ### Backend (`backend/.env`)
 
