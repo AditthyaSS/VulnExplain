@@ -181,7 +181,7 @@ ENABLE_HEALTH_CHECK=false
 
 ---
 
-## 📖 API Endpoints
+##  API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
