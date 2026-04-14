@@ -264,7 +264,7 @@ npm run build
 
 ---
 
-## 🧪 Development
+##  Development
 
 The project includes:
 - ✅ Custom emergentintegrations wrapper for AI integration
