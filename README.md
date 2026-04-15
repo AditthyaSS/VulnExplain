@@ -292,7 +292,7 @@ This project is proprietary software.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 This is a private project. For questions or issues, please contact the development team.
 
