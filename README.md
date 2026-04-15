@@ -275,7 +275,7 @@ The project includes:
 
 ---
 
-## 📊 Severity Mapping
+##  Severity Mapping
 
 | CWE | Severity | Fix Time | Examples |
 |-----|----------|----------|----------|
