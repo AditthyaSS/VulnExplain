@@ -298,7 +298,7 @@ This is a private project. For questions or issues, please contact the developme
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **IBM Cost of Data Breach Report 2024** - Financial impact data
 - **DPDP Act 2023** - Compliance fine estimates
