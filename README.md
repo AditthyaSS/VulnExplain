@@ -286,7 +286,7 @@ The project includes:
 
 ---
 
-## 📝 License
+##  License
 
 This project is proprietary software.
 
