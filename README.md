@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ VulnExplain
+#  VulnExplain
 
 ### AI-Powered Security Audit SaaS Platform
 
