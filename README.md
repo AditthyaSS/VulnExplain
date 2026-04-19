@@ -25,7 +25,6 @@
 <td width="50%">
 
 ###  AI-Powered Analysis
-- **Groq AI Integration** with Llama 3.3-70b-versatile for intelligent vulnerability detection
 - **CWE-Based Classification** with industry standards
 - **SOC 2 Compliance Mapping** for enterprise security
 - **Deduplication Engine** to eliminate false positives
